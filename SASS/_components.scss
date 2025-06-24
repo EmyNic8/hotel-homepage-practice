@@ -1,0 +1,335 @@
+$color-main: #FCC131;
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.fondo-encabezado {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .img-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px);
+    position: absolute;
+    z-index: -1;
+  }
+
+  .texto-encabezado {
+    margin-bottom: 2rem;
+    padding: 0 20px;
+    .logo {
+      height: 10rem;
+      width: auto;
+      margin-bottom: 5rem;
+    }
+    .subtitulo-encabezado {
+      max-width: 50rem;
+      font-weight: 500;
+      font-size: large;
+    }
+  }
+
+  .boton-menu {
+    gap: 1px;
+  }
+    }
+
+
+@mixin encabezado {
+  font-family: serif;
+  margin-bottom: 0;
+  margin-top: 5rem;
+  
+  .titulo-principal {
+    font-weight: 400;
+    font-size: 10rem; 
+    margin: 0;
+  }
+}
+
+.habitaciones {
+  width: 100%;
+  
+  .encabezado-habitaciones {
+    @include encabezado();
+    text-align: left;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; // Alinea el contenido a la derecha
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; // Centra la tarjeta
+    gap: 2rem;              // Espacio entre tarjetas
+    padding: 2rem 0;        // Padding vertical
+    padding-bottom: 2rem;
+    max-width: 1200px;     // Opcional: limita el ancho máximo
+    margin: 0 auto;        // Centra el contenedor
+  }
+
+  .card {
+    background-color: $color-main;
+    border-radius: 5%;
+    border: none;
+    width: 18rem;
+    width: 18rem;        // Ancho fijo para cada tarjeta
+    flex-shrink: 0;      // Evita que se encojan
+    margin: 0;           // Elimina márgenes por defecto
+    
+    .card-img-top {
+      border-top-left-radius: 5%;
+      border-top-right-radius: 5%;
+      height: 12rem;
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .habitaciones-texto {
+      margin: 1rem;
+      height: 13rem;
+      display: flex;
+      flex-direction: column;
+      
+      .texto-titulo {
+        margin-bottom: 0.8rem;
+      }
+      
+      .scrollable-text {
+        font-size: 90%;
+        max-height: 7rem;
+        overflow-y: auto;
+        padding-right: 5px;
+        flex-grow: 1;
+      }
+      
+      .boton-reserva {
+        margin: 1rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.pasillo{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;  // Elimina cualquier margen exterior
+  margin-bottom: 2rem;
+  padding: 0; // Elimina cualquier padding
+  align-items: center;
+
+  .imagen-pasillo{
+    margin: 0;
+    padding: 0;
+    align-self: flex-start;
+
+    img {
+      border-radius: 0 10% 10% 0; // Redondea solo lado izquierdo
+      max-width: 100%;   // Asegura que no sobrepase
+      height: auto;
+      display: block;    // Elimina espacio inferior
+      margin-left: 0;    // Fuerza pegado a la izquierda
+    }
+    }
+
+  .texto-pasillo{
+    margin: 1rem;
+    max-width: 25rem;
+  }
+
+}
+
+@mixin localizacion-flex {
+  background-color: $color-main;
+  color: black;
+  height: auto;
+  border-radius: 5%;
+  padding: 1rem;
+  h4 {
+    font-weight: 700;
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+.transporte-texto {
+  max-height: 300px;
+  overflow-y: auto;
+  // Estilo personalizado para scrollbar (WebKit browsers)
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+}
+
+.localizacion {
+  background-color: black;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  box-sizing: border-box;
+
+  .titulo-localizacion {
+    margin-bottom: 2rem;
+    @include encabezado();
+    .titulo-principal {
+      color: white;
+    }
+  }
+
+  .flex {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    width: 80%;
+    margin-left: auto;
+
+    .transporte {
+      grid-column: 1 / span 2;
+      grid-row: 1;
+      @include localizacion-flex();
+    }
+
+    .mayorista, .ateneo, .coreano, .velez, .mapa {
+      .img-container {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        border-radius: 5%;
+      }
+
+      img {
+        width: 100%;      // Asegura que la imagen ocupe todo el ancho del contenedor
+        height: 100%;     // Asegura que la imagen ocupe todo el alto del contenedor
+        object-fit: cover;  // Asegura que la imagen cubra el área sin deformarse
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      &:hover .overlay {
+        opacity: 1;
+      }
+    }
+
+    .coreano {
+      grid-column: 1 / span 1;
+      grid-row: 2;
+    }
+
+    .velez {
+      grid-column: 2 / span 1;
+      grid-row: 2;
+    }
+
+    .mapa {
+      grid-column: 3 / span 2;
+      grid-row: 2;
+    }
+  }
+}
+
+.contactos {
+  margin: 0;
+  padding-bottom: 10rem;
+  font-family: serif;
+  width: 100%;
+  .titulo-principal-contactos{
+    width: 100%; // Forza a que el contenedor del h1 ocupe todo el ancho
+    text-align: right; // Alinea el texto a la derecha (alternativa a "end")
+    padding-right: 2rem;
+    h1 {
+      font-size: 10rem;
+      font-weight: 400;
+      margin: 0; // Elimina márgenes por defecto del h1
+      display: inline-block;
+    } 
+  }
+  
+  .info-contactos {
+    max-width: 800px; // Ancho máximo para el contenido
+    margin: 0 auto; // Centrado horizontal
+    padding: 0 2rem; // Padding lateral para móviles
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    .informacion {
+      .contactos-lista {
+        .item-1, .item-2, .item-3, .item-4, .item-5 {
+          padding: 2%;
+          padding-left: 4%;
+          border: none;
+          background-color: $color-main !important;
+        }
+    }
+  }
+
+  .redes {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .titulo-contactos {
+      font-size: large;
+      font-weight: 500;
+    }
+    .redes-contactos {
+      gap: 1rem;
+      .facebook, .insta, .google {
+        font-size: large;}
+    }
+  }  
+  }
+  
+}
+
